@@ -3,6 +3,10 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const mongoose     = require('mongoose');
+const cors = require('cors');
+
+const projectRouter = require('./routes/project-routes');
+const taskRouter = require('./routes/task-routes');
 
 const app = express();
 
@@ -26,11 +30,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 // CORS SETTINGS TO ALLOW CROSS-ORIGIN INTERACTION:
-//  ...
+app.use(cors({
+  credentials: true,
+  origin: ['http://localhost:3000'] // <== this will be the URL of our React app (it will be running on port 3000)
+}));
 
 // ROUTES MIDDLEWARE:
-//  app.use('', projectRouter);
-//  app.use('', taskRouter);
+app.use('/api', projectRouter);
+app.use('/api', taskRouter);
 
 
 module.exports = app;
