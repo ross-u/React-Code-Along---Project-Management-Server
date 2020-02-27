@@ -7,8 +7,9 @@ require("dotenv").config();
 
 const app = express();
 
-//  const projectRouter = require('./routes/project-routes');
-//  const taskRouter = require('./routes/task-routes');
+// const projectRouter = require('./routes/project-routes');
+// const taskRouter = require('./routes/task-routes');
+// const router = require('./routes/index');
 
 // MONGOOSE CONNECTION
 mongoose
