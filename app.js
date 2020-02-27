@@ -1,35 +1,34 @@
-const express = require('express');
-const path = require('path');
-const cookieParser = require('cookie-parser');
-const logger = require('morgan');
-const mongoose = require('mongoose');
+const express = require("express");
+const path = require("path");
+const cookieParser = require("cookie-parser");
+const logger = require("morgan");
+const mongoose = require("mongoose");
 
 const app = express();
 
 //  const projectRouter = require('./routes/project-routes');
 //  const taskRouter = require('./routes/task-routes');
 
-
 // MONGOOSE CONNECTION
 mongoose
-  .connect('mongodb://localhost:27017/project-management-server', {
-    useNewUrlParser: true,
+  .connect(`${process.env.MONGODB_URI}`, {
+    useNewUrlParser: true
   })
   .then(x => {
     console.log(
-      `Connected to Mongo! Database name: "${x.connections[0].name}"`,
+      `Connected to Mongo! Database name: "${x.connections[0].name}"`
     );
   })
   .catch(err => {
-    console.error('Error connecting to mongo', err);
+    console.error("Error connecting to mongo", err);
   });
 
 // MIDDLEWARE SETUP
-app.use(logger('dev'));
+app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, "public")));
 
 // CORS SETTINGS TO ALLOW CROSS-ORIGIN INTERACTION:
 //  ...
