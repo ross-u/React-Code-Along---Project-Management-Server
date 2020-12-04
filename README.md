@@ -709,7 +709,7 @@ router.delete('/projects/:id', (req, res)=>{
 
   Project.findByIdAndRemove(id)
     .then(() => {
-      res;
+      res
         .status(202)  //  Accepted
         .send(`Document ${id} was removed successfully.`);
     })
