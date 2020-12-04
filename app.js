@@ -7,8 +7,8 @@ require("dotenv").config();
 
 const app = express();
 
-// const projectRouter = require('./routes/project-routes');
-// const taskRouter = require('./routes/task-routes');
+// const projectRouter = require('./routes/project.router');
+// const taskRouter = require('./routes/task.router');
 // const router = require('./routes/index');
 
 // MONGOOSE CONNECTION
@@ -36,7 +36,7 @@ app.use(express.static(path.join(__dirname, "public")));
 //  ...
 
 // ROUTES MIDDLEWARE:
-//  app.use('', projectRouter);
-//  app.use('', taskRouter);
+//  app.use('/api', projectRouter);
+//  app.use('/api', taskRouter);
 
 module.exports = app;
