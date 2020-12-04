@@ -8,11 +8,11 @@
 
 ## REST
 
-REST stands for **Representational State Transfer**.
+[REST](https://www.tutorialspoint.com/restful/index.htm) stands for **Representational State Transfer**.
 
 
 
-REST is a design pattern for APIs (backend/servers) and describes how network resources are accessed. 
+[REST](https://www.tutorialspoint.com/restful/index.htm)  is a design pattern for APIs (backend/servers) and describes how network resources are accessed. 
 
 REST is not a standard nor a protocol. It is a guideline that developers should follow when creating APIs to ensure the API is following a uniform design pattern.
 
