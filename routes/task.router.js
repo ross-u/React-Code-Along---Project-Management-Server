@@ -3,7 +3,7 @@
 
 
 
-// GET '/api/tasks/:taskId'   => to retrieve a specific task
+// GET '/api/tasks/:id'   => to retrieve a specific task
 
 
 
