@@ -3,7 +3,7 @@
 
 
 
-// GET '/api/projects/:projectId/tasks/:taskId'   => to retrieve a specific task
+// GET '/api/tasks/:taskId'   => to retrieve a specific task
 
 
 
