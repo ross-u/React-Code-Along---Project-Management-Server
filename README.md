@@ -180,15 +180,20 @@ The below table will serve as the documentation for this project, documenting al
 <br>
 
 ```bash
-git clone https://github.com/ross-u/React-Code-Along---Project-Management-Server.git
+# Create the project folder
+mkdir project-management-server
+
+# Enter the created folder
+cd project-management-server
+
+# Clone the stater code to the same folder  `.`
+git clone https://github.com/ross-u/React-Code-Along---Project-Management-Server.git .
 
 
-cd React-Code-Along---Project-Management-Server
-
-
+# Install the dependencies
 npm i
 
-
+# Open the editor
 code .
 ```
 
