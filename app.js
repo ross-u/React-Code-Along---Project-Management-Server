@@ -14,14 +14,15 @@ const app = express();
 // MONGOOSE CONNECTION
 mongoose
   .connect(`${process.env.MONGODB_URI}`, {
-    useNewUrlParser: true
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
   })
-  .then(x => {
+  .then((x) => {
     console.log(
       `Connected to Mongo! Database name: "${x.connections[0].name}"`
     );
   })
-  .catch(err => {
+  .catch((err) => {
     console.error("Error connecting to mongo", err);
   });
 
