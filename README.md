@@ -1570,6 +1570,12 @@ The option `credentials` will come into play when we introduce `users` and cooki
 
 <br>
 
+Our client React app and Express Server app are two distinct processes (apps) and will therefore run on different ports.
+
+
+
+<br>
+
 
 
 #### Server (backend) `PORT`
@@ -1602,3 +1608,4 @@ Our client side React app which we will create in the next step will be running 
 
 
 <br>
+
