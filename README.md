@@ -100,6 +100,63 @@ We will be building the server/backend for our **Project Management** app, and w
 
 
 
+
+
+<br>
+
+
+
+<h3 style="background: cornflowerblue">1</h3>
+
+### API Documentation
+
+
+
+<br>
+
+
+
+We will start our project by first documenting all of the routes of our server. Following REST guidelines, we will focus on using verbs to specify the type of operation being done and use the name of the resource for the endpoint name. 
+
+
+
+As we will work with 2 MongoDB collections holding *projects* and *tasks*, we will use the endpoints `/api/projects` and `/api/tasks`. 
+
+Again following the REST guidelines, we *don't use any verbs* in the name of the endpoints, for that we have HTTP verbs/methods (`POST`,`GET` , etc. ).
+
+
+
+<br>
+
+The below table will serve as the documentation for this project, documenting all the routes and their behaviour.
+
+
+
+<br>
+
+
+
+| URL                 | HTTP verb | Request body                            | Action                           | Success Status Code |
+| ------------------- | --------- | --------------------------------------- | -------------------------------- | ------------------- |
+| `/api/projects`     | `GET`     | (empty)                                 | Returns all projects             | 200 OK              |
+| `/api/projects`     | `POST`    | { `title`, `description` }              | Creates a new project            | 201 Created         |
+| `/api/projects/:id` | `GET`     | (empty)                                 | Returns a single project by id   | 200 OK              |
+| `/api/projects/:id` | `PUT`     | { `title`, `description` }              | Edits a specific project         | 200 OK              |
+| `/api/projects/:id` | `DELETE`  | (empty)                                 | Deletes a specific  project      | 204 No Content      |
+|                     |           |                                         |                                  |                     |
+| `/api/tasks`        | `POST`    | { `title`, `description`, `projectId` } | Creates a new task for a project | 201 Created         |
+| `/api/tasks/:id`    | `GET`     | (Empty)                                 | Returns a single task by id      | 200 OK              |
+| `/api/tasks/:id`    | `PUT`     | { `title`, `description` }              | Edits a specific task            | 200 OK              |
+| `/api/tasks/:id`    | `DELETE`  | (empty)                                 | Deletes a specific  tasks        | 202 Accepted        |
+
+
+
+
+
+<br>
+
+
+
 <br>
 
 <h3 style="background: cornflowerblue">1</h3>
@@ -1101,7 +1158,7 @@ http://localhost:5000/api/tasks
 {
   "title": "Learn React",
   "description": "Get react skills and build an awesome final project",
-  "projectId": <_id OF THE EXISTING PROJECT DOCUMENT>
+  "projectId": <_id_OF_THE_EXISTING_PROJECT_DOCUMENT>
 }
 ```
 
@@ -1360,6 +1417,40 @@ router.delete('/tasks/:id', (req, res) => {
 
 
 
+
+<br>
+
+
+
+#### Test the route `DELETE` `/api/tasks/:id`.
+
+
+
+Using [Postman](https://www.getpostman.com/) test the newly created server route `DELETE` `/api/tasks`.
+
+##### Method
+
+```
+DELETE
+```
+
+##### URL
+
+```
+http://localhost:5000/api/tasks/:id
+```
+
+❗**NOTE:** Remember to include the `ObjectId` of a tasks document already existing in your database ( replace the **`:id`** part of the above **URL** with an id from your database ).
+
+
+
+<br>
+
+
+
+##### Request Body:
+
+No request body. HTTP [`DELETE` messages/requests use only Headers](https://developer.mozilla.org/en-US/docs/Web/HTTP/Messages#Body).
 
 
 
