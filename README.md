@@ -174,10 +174,6 @@ To run the app use the command  `npm run start:dev` .
 
 <h3 style="background: cornflowerblue">2</h3>
 
-<br>
-
-
-
 ### Create the `Project` model - `models/project.model.js`
 
 
@@ -225,10 +221,6 @@ module.exports = Project;
 
 
 <h3 style="background: cornflowerblue">3</h3>
-
-<br>
-
-
 
 ### Create the `Task` model - `models/task.model.js`
 
@@ -278,8 +270,6 @@ module.exports = Task;
 
 
 <h3 style="background: cornflowerblue">4</h3>
-
-<br>
 
 ### Create the  `project.router`: 
 
@@ -335,10 +325,6 @@ module.exports = router;
 
 
 <h3 style="background: cornflowerblue">5</h3>
-
-<br>
-
-
 
 ### Create the route `POST` `/projects`
 
@@ -497,10 +483,6 @@ http://localhost:5000/api/projects
 
 <h3 style="background: cornflowerblue">6</h3>
 
-<br>
-
-
-
 ### Create `GET` `/api/projects` route
 
 
@@ -605,10 +587,6 @@ No request body. HTTP [`GET` messages use only Headers](https://developer.mozill
 
 
 <h3 style="background: cornflowerblue">7</h3>
-
-<br>
-
-
 
 ### Create `GET` `/projects/:id` route
 
@@ -718,10 +696,6 @@ No request body. HTTP [`GET` messages/requests use only Headers](https://develop
 
 <h3 style="background: cornflowerblue">8</h3>
 
-<br>
-
-
-
 ### Create  `PUT` `/projects/:id` route
 
 
@@ -822,12 +796,6 @@ http://localhost:5000/api/projects/:id
 
 
 <h3 style="background: cornflowerblue">9</h3>
-
-
-
-<br>
-
-
 
 ### Create `DELETE` `/projects/:id` route
 
@@ -934,13 +902,7 @@ No request body. HTTP [`DELETE` messages/requests use only Headers](https://deve
 
 <h3 style="background: cornflowerblue">10</h3>
 
-
-
-<br>
-
-
-
-### Create the  `task.router`: 
+### Create the  `task.router` 
 
 
 
@@ -1039,10 +1001,6 @@ app.use('/api', taskRouter);        // <-- UNCOMMENT
 
 
 <h3 style="background: cornflowerblue">11</h3>
-
-<br>
-
-
 
 ### Create  `POST` `/api/tasks` route
 
@@ -1159,14 +1117,6 @@ http://localhost:5000/api/tasks
 
 <h3 style="background: cornflowerblue">12</h3>
 
-
-
-<br>
-
-
-
-
-
 ### Create `GET` `/tasks/:id` route
 
 
@@ -1260,12 +1210,6 @@ No request body. HTTP [`GET` messages/requests use only Headers](https://develop
 
 
 <h3 style="background: cornflowerblue">13</h3>
-
-
-
-<br>
-
-
 
 ### Create `PUT` `/tasks/:id` route
 
@@ -1364,11 +1308,7 @@ http://localhost:5000/api/tasks/:id
 
 
 
-<h3 style="background: cornflowerblue">12</h3>
-
-
-
-<br>
+<h3 style="background: cornflowerblue">14</h3>
 
 ### Create `DELETE` `/tasks/:id`
 
@@ -1427,11 +1367,7 @@ router.delete('/tasks/:id', (req, res) => {
 
 
 
-<h3 style="background: cornflowerblue">12</h3>
-
-
-
-<br>
+<h3 style="background: cornflowerblue">15</h3>
 
 ### Enable CORS - set CORS middleware
 
@@ -1475,7 +1411,15 @@ npm install cors --save
 
 #### Update `app.js`
 
+<br>
+
+
+
 Import  `cors` middleware in `app.js`.
+
+<br>
+
+
 
 ##### `app.js`
 
@@ -1527,11 +1471,7 @@ The option `credentials` will come into play when we introduce `users` and cooki
 
 
 
-<h3 style="background: cornflowerblue">12</h3>
-
-
-
-<br>
+<h3 style="background: cornflowerblue">16</h3>
 
 ### Client and Server PORTs
 
