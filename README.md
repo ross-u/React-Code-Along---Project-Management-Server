@@ -106,7 +106,7 @@ We will be building the server/backend for our **Project Management** app, and w
 
 
 
-<h3 style="background: cornflowerblue">1</h3>
+<h3 style="background: cornflowerblue">0</h3>
 
 ### API Documentation
 
