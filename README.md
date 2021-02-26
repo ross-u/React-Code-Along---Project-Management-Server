@@ -48,7 +48,7 @@ Most REST APIs implement [CRUD](https://en.wikipedia.org/wiki/Create,_read,_upda
 
 
 
-### RESTful API - basic guidelines
+## RESTful API - basic guidelines
 
 
 
@@ -74,6 +74,8 @@ In addition the table describes what the expected request body of request is and
 
 
 
+<br>
+
 
 
 | URL                 | HTTP verb | Request body | Action                     | Success Status Code |
@@ -92,7 +94,7 @@ In addition the table describes what the expected request body of request is and
 
 
 
-### Build the API: The Project Management App
+## Build the API: The Project Management App
 
 We will be building the server/backend for our **Project Management** app, and we will have all these previously listed routes ,plus some more. So let’s start from the beginning.
 
@@ -100,9 +102,17 @@ We will be building the server/backend for our **Project Management** app, and w
 
 <br>
 
+<h3 style="background: cornflowerblue">1</h3>
+
+### Getting Started
+
+<br>
+
 
 
 #### Clone the starter repo and install the dependencies
+
+<br>
 
 
 
@@ -148,7 +158,13 @@ MONGODB_URI=mongodb://localhost:27017/project-management
 
 
 
-#### Start the app,  `npm run start:dev` 
+#### Start the app
+
+<br>
+
+
+
+To run the app use the command  `npm run start:dev` .
 
 
 
@@ -156,7 +172,19 @@ MONGODB_URI=mongodb://localhost:27017/project-management
 
 
 
-#### Create the `Project` model - `models/project.model.js`
+<h3 style="background: cornflowerblue">2</h3>
+
+<br>
+
+
+
+### Create the `Project` model - `models/project.model.js`
+
+
+
+<br>
+
+
 
 We will first start by creating our database and the collections. To do this, we will start with models.
 
@@ -196,7 +224,19 @@ module.exports = Project;
 
 
 
-#### Create the `Task` model - `models/task.model.js`
+<h3 style="background: cornflowerblue">3</h3>
+
+<br>
+
+
+
+### Create the `Task` model - `models/task.model.js`
+
+
+
+<br>
+
+
 
 Our API will be used to create projects and tasks. Each project may contain many tasks.
 
@@ -231,15 +271,29 @@ module.exports = Task;
 
 
 
+
+
 <br>
 
 
 
+<h3 style="background: cornflowerblue">4</h3>
+
+<br>
+
+### Create the  `project.router`: 
 
 
-#### Create the  `project.router`: 
+
+<br>
+
+
 
 Next step is to implement the project router logic. This router will be used to receive and handle all requests related to the `projects` collection and documents. 
+
+
+
+<br>
 
 
 
@@ -249,19 +303,8 @@ Let's do the following steps in the `routes/project.router.js` file:
 
 - import `express`, `mongoose` using the NodeJS syntax (`require()`) 
 - Instantiate the `Router ` (`express.Router()`).
-
 - import models `Project` and `Task` using the NodeJS syntax (`require()`)
 - export the router using NodeJS syntax (`module.exports`).
-
-- create the route `POST` `/projects`
-
-  
-
-  Each route on our server should be created following REST design principles and therefore we must ensure that the we name the route properly (`/projects`) and ensure that the response `res` returns a status code that clearly describes the result of the finished request. In this case we will return the status code [`201` `Created`](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#2xx_success), describing that `POST` request was successfull and that the resource was successfully created.
-
-  
-
-  In case of an error response should send the status code [`500` `Internal Server Error`](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#5xx_server_errors) representing a generic message given when an unexpected condition was encountered.
 
 
 
@@ -281,6 +324,46 @@ const Project = require('./../models/project.model');
 const Task = require('./../models/task.model');
 
 
+
+module.exports = router;
+```
+
+
+
+<br>
+
+
+
+<h3 style="background: cornflowerblue">5</h3>
+
+<br>
+
+
+
+### Create the route `POST` `/projects`
+
+<br>
+
+
+
+Each route on our server should be created following REST design principles and therefore we must ensure that the we name the route properly (`/projects`) and ensure that the response `res` returns a status code that clearly describes the result of the finished request. In this case we will return the status code [`201` `Created`](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#2xx_success), describing that `POST` request was successfull and that the resource was successfully created.
+
+
+
+In case of an error response should send the status code [`500` `Internal Server Error`](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#5xx_server_errors) representing a generic message given when an unexpected condition was encountered.
+
+
+
+<br>
+
+
+
+##### `routes/project.router.js`
+
+```js
+// routes/project.router.js
+
+
 // POST '/api/projects'
 router.post('/projects', (req, res, next) => {
   const { title, description } = req.body;
@@ -296,10 +379,7 @@ router.post('/projects', (req, res, next) => {
         .status(500)  // Internal Server Error
         .json(err)
     })
-})
-
-
-module.exports = router;
+});
 ```
 
 
@@ -368,6 +448,10 @@ app.use('/api', projectRouter);        // <-- UNCOMMENT
 
 
 
+<br>
+
+
+
 Using [Postman](https://www.getpostman.com/) test the newly created server route `POST` `/api/projects`.
 
 ##### Method
@@ -405,15 +489,35 @@ http://localhost:5000/api/projects
 
 
 
+
+
 <br>
 
 
 
-#### Create `GET` `/api/projects` route
+<h3 style="background: cornflowerblue">6</h3>
+
+<br>
+
+
+
+### Create `GET` `/api/projects` route
+
+
+
+<br>
+
+
 
 Next step is to create a `GET` route used for getting the projects.
 
 If the request gets fulfilled successfully we will return the status code [`200` `OK`](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#2xx_success), describing that `GET` request was successfull and that the response will contain the requested resource (json with projects).
+
+
+
+<br>
+
+
 
 In case of an error response should send the status code [`500` `Internal Server Error`](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#5xx_server_errors) representing a generic message given when an unexpected condition was encountered.
 
@@ -460,6 +564,10 @@ router.get('/projects', (req, res, next) => {
 
 
 
+<br>
+
+
+
 Using [Postman](https://www.getpostman.com/) test the newly created server route `GET` `/api/projects`.
 
 
@@ -480,6 +588,10 @@ http://localhost:5000/api/projects
 
 
 
+<br>
+
+
+
 ##### Request Body:
 
 No request body. HTTP [`GET` messages use only Headers](https://developer.mozilla.org/en-US/docs/Web/HTTP/Messages#Body).
@@ -492,7 +604,19 @@ No request body. HTTP [`GET` messages use only Headers](https://developer.mozill
 
 
 
-#### Create `GET` `/projects/:id` route
+<h3 style="background: cornflowerblue">7</h3>
+
+<br>
+
+
+
+### Create `GET` `/projects/:id` route
+
+
+
+<br>
+
+
 
 Create the new  `GET` route used for getting a specific project by id.
 
@@ -574,9 +698,15 @@ http://localhost:5000/api/projects/:id
 
 
 
+<br>
+
+
+
 ##### Request Body:
 
 No request body. HTTP [`GET` messages/requests use only Headers](https://developer.mozilla.org/en-US/docs/Web/HTTP/Messages#Body).
+
+
 
 
 
@@ -586,7 +716,13 @@ No request body. HTTP [`GET` messages/requests use only Headers](https://develop
 
 
 
-#### Create  `PUT` `/projects/:id` route
+<h3 style="background: cornflowerblue">8</h3>
+
+<br>
+
+
+
+### Create  `PUT` `/projects/:id` route
 
 
 
@@ -632,9 +768,11 @@ router.put('/projects/:id', (req, res, next)=>{
 
 
 
-<br>
-
 #### Test the route `PUT` `/api/projects/:id`.
+
+
+
+<br>
 
 
 
@@ -658,6 +796,10 @@ http://localhost:5000/api/projects/:id
 
 
 
+<br>
+
+
+
 ##### Request Body (`JSON`):
 
 ```json
@@ -675,7 +817,25 @@ http://localhost:5000/api/projects/:id
 
 
 
-#### Create `DELETE` `/projects/:id` route
+<br>
+
+
+
+<h3 style="background: cornflowerblue">9</h3>
+
+
+
+<br>
+
+
+
+### Create `DELETE` `/projects/:id` route
+
+
+
+<br>
+
+
 
 Create the `DELETE` route used to *delete* a specific project by id.
 
@@ -730,6 +890,10 @@ router.delete('/projects/:id', (req, res)=>{
 
 
 
+<br>
+
+
+
 Using [Postman](https://www.getpostman.com/) test the newly created server route `DELETE` `/api/projects`.
 
 ##### Method
@@ -750,9 +914,17 @@ http://localhost:5000/api/projects/:id
 
 
 
+<br>
+
+
+
 ##### Request Body:
 
 No request body. HTTP [`DELETE` messages/requests use only Headers](https://developer.mozilla.org/en-US/docs/Web/HTTP/Messages#Body).
+
+
+
+
 
 
 
@@ -760,13 +932,21 @@ No request body. HTTP [`DELETE` messages/requests use only Headers](https://deve
 
 
 
+<h3 style="background: cornflowerblue">10</h3>
 
 
 
+<br>
 
 
 
 ### Create the  `task.router`: 
+
+
+
+<br>
+
+
 
 Next step is to implement the task router logic. This router will be used to receive and handle all requests related to the `tasks` collection and documents. 
 
@@ -775,6 +955,7 @@ Next step is to implement the task router logic. This router will be used to rec
 Let's do the following steps in the `routes/task.router.js` file:
 
 - import `express` and `mongoose` using the NodeJS syntax ( `require()` ) .
+
 - Instantiate the `Router ` ( `express.Router()` ).
 
 - import models `Project` and `Task` using the NodeJS syntax ( `require()` ).
@@ -853,13 +1034,23 @@ app.use('/api', taskRouter);        // <-- UNCOMMENT
 
 
 
+<br>
 
+
+
+<h3 style="background: cornflowerblue">11</h3>
 
 <br>
 
 
 
-#### Create  `POST` `/api/tasks` route
+### Create  `POST` `/api/tasks` route
+
+
+
+<br>
+
+
 
 Create `POST` route used to create a new task. 
 
@@ -942,6 +1133,10 @@ http://localhost:5000/api/tasks
 
 
 
+<br>
+
+
+
 ##### Request Body (`JSON`):
 
 ```json
@@ -956,15 +1151,35 @@ http://localhost:5000/api/tasks
 
 
 
+
+
+<br>
+
+
+
+<h3 style="background: cornflowerblue">12</h3>
+
+
+
 <br>
 
 
 
 
 
-#### Create `GET` `/tasks/:id` route
+### Create `GET` `/tasks/:id` route
+
+
+
+<br>
+
+
 
 Create the new  `GET ` route used for getting a specific task by id.
+
+
+
+<br>
 
 
 
@@ -1026,9 +1241,15 @@ http://localhost:5000/api/tasks/:id
 
 
 
+<br>
+
+
+
 ##### Request Body:
 
 No request body. HTTP [`GET` messages/requests use only Headers](https://developer.mozilla.org/en-US/docs/Web/HTTP/Messages#Body).
+
+
 
 
 
@@ -1038,11 +1259,21 @@ No request body. HTTP [`GET` messages/requests use only Headers](https://develop
 
 
 
+<h3 style="background: cornflowerblue">13</h3>
 
 
 
+<br>
 
-#### Create `PUT` `/tasks/:id` route
+
+
+### Create `PUT` `/tasks/:id` route
+
+
+
+<br>
+
+
 
 Create the `PUT` route used to *update* a specific task by id.
 
@@ -1112,6 +1343,10 @@ http://localhost:5000/api/tasks/:id
 
 
 
+<br>
+
+
+
 ##### Request Body (`JSON`):
 
 ```json
@@ -1123,13 +1358,19 @@ http://localhost:5000/api/tasks/:id
 
 
 
+
+
 <br>
 
 
 
+<h3 style="background: cornflowerblue">12</h3>
 
 
-#### Create `DELETE` `/tasks/:id`
+
+<br>
+
+### Create `DELETE` `/tasks/:id`
 
 
 
@@ -1180,13 +1421,19 @@ router.delete('/tasks/:id', (req, res) => {
 
 
 
+
+
 <br>
 
 
 
+<h3 style="background: cornflowerblue">12</h3>
 
 
-#### Enable CORS - set CORS middleware
+
+<br>
+
+### Enable CORS - set CORS middleware
 
 
 
@@ -1274,11 +1521,25 @@ The option `credentials` will come into play when we introduce `users` and cooki
 
 
 
+###
+
 <br>
 
 
 
-### 
+<h3 style="background: cornflowerblue">12</h3>
+
+
+
+<br>
+
+### Client and Server PORTs
+
+
+
+<br>
+
+
 
 #### Server (backend) `PORT`
 
